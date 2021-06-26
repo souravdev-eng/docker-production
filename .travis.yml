@@ -9,6 +9,7 @@ before_install:
 script:
   - docker run -e CI=true souravdeveloper/docker-react npm run test
 deploy:
+  edge: true
   #Spacify by the provider we tell travis to deploy this spacik provaider
   provider: elasticbeanstalk
   # reagis means are of my elasticbeanstalk regin
