@@ -9,3 +9,20 @@ before_install:
   - docker build -t souravdeveloper/docker-react -f Dockerfile.dev .
 script:
   - docker run -e CI=true souravdeveloper/docker-react npm run test
+deploy:
+  #Spacify by the provider we tell travis to deploy this spacik provaider
+  provider: elasticbeanstalk
+  # reagis means are of my elasticbeanstalk regin
+  region: 'us-east-1'
+  # name of our app
+  app: 'docker-react'
+  env: 'Dockerreact-env-1'
+  #Here in this bucket traise store all our code and deploy to this aws bucket
+  bucket_name: 'elasticbeanstalk-us-east-1-239902484596'
+  bucket_path: 'docker-react'
+  # This mean when ever we push our code into master branch it's going to deploy
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRECT_KEY
